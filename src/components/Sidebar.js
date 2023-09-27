@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { AiFillHome } from 'react-icons/ai';
-import { MdSubscriptions } from 'react-icons/md';
 import { BsFire, BsMusicNote, BsFillLightbulbFill } from 'react-icons/bs';
 import { HiShoppingBag, HiMiniTrophy } from 'react-icons/hi2';
 import { PiFilmSlateDuotone } from 'react-icons/pi';
