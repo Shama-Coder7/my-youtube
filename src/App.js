@@ -5,6 +5,8 @@ import store from './utils/store';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainContainer from './components/MainContainer';
 import WatchPage from './components/WatchPage';
+import FilteredVideoPage from './components/FilteredVideoPage';
+import SearchPage from './components/SearchPage';
 
 const appRouter = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const appRouter = createBrowserRouter([
       {
         path: 'watch',
         element: <WatchPage />,
+      },
+      {
+        path: '/filter',
+        element: <FilteredVideoPage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
       },
     ],
   }, // this will go wherever my outlet is.

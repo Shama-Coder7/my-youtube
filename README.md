@@ -31,4 +31,15 @@
 
 - created dynamic optimized search page with cacheing
 
-- 
+- Added search with filtered videos
+
+- ** Filtered Videos Page **
+
+- Added Description and title
+
+- Nested Comment
+- Live Chat API
+
+- Live Chat Send
+
+- Fixed its CSS

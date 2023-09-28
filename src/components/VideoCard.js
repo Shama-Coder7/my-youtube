@@ -4,7 +4,7 @@ const VideoCard = ({ info }) => {
   // console.log('info', info);
 
   const { snippet, statistics } = info;
-    // const { channelTitle, title, thumbnails } = snippet;
+  // const { channelTitle, title, thumbnails } = snippet;
   return (
     <div className="p-3 m-3 w-96 shadow">
       <img
@@ -16,6 +16,7 @@ const VideoCard = ({ info }) => {
         <li className="font-bold py-2">{snippet.title}</li>
         <li>{snippet.channelTitle}</li>
         <li>{statistics?.viewCount} views</li>
+        {/* <li>{snippet?.publishedAt} time</li> */}
       </ul>
     </div>
   );

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { YOUTUBE_SEARCH_API } from '../utils/constants';
 import { cacheResults } from '../utils/searchSlice';
-import { searchText } from '../utils/filterVideoSlice';
+import { searchText } from '../utils/searchVideoSlice';
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -81,7 +81,8 @@ const Head = () => {
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
           />
-          {/* <Link to={'/results?search_query=' + searchQuery}> */}
+          {/* <Link href="/search"> */}
+          {/* <a href={'/search?search_query=' + searchQuery}> */}
           <button
             className=" border bg-gray-200 border-gray-400 rounded-r-full px-3 py-2 py-3 -py-1 "
             onClick={() =>
@@ -91,19 +92,24 @@ const Head = () => {
             <AiOutlineSearch />
           </button>
           {/* </Link> */}
+          {/* </a> */}
         </div>
         {showSuggestions && (
-          <div className="absolute bg-white w-[500px] py-1 px-3 shadow-lg rounded-lg dark:shadow-slate-400">
+          <div className="z-100 absolute items-center bg-white w-[500px] py-1 px-3 shadow-lg rounded-lg dark:shadow-slate-400">
             <ul>
+              {/* <Link href="/search"> */}
+              {/* <a href={'/search?search_query=' + searchQuery}> */}
               {suggestions.map((s) => (
                 <li
                   key={s}
-                  className="flex py-2 px-3 shadow-sm hover:bg-gray-100"
+                  className="flex py-2 px-3 shadow-sm hover:bg-gray-100 cursor-progress"
                 >
                   <AiOutlineSearch className="m-1" />
                   {s}
                 </li>
               ))}
+              {/* </Link> */}
+              {/* </a> */}
             </ul>
           </div>
         )}
