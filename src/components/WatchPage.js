@@ -48,7 +48,7 @@ const WatchPage = () => {
       </div>
 
       <div className="px-10 pb-2">
-        <h2 className="pb-5 font-bold text-xl">{videoInfo?.title}</h2>
+        <h2 className="pb-5 font-bold text-lg">{videoInfo?.title}</h2>
         {/* <div className="flex">
           <div className="flex">
             <img src="" alt="user-icon" />

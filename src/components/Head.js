@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { YOUTUBE_SEARCH_API } from '../utils/constants';
 import { cacheResults } from '../utils/searchSlice';
 import { searchText } from '../utils/searchVideoSlice';
+import { MdKeyboardVoice, MdOutlineVideoCall } from 'react-icons/md';
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -14,7 +15,7 @@ const Head = () => {
 
   const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
-
+  // const navigate = useNavigate();
   useEffect(() => {
     // api call
 
@@ -36,8 +37,9 @@ const Head = () => {
     };
   }, [searchQuery]);
 
+  // console.log('SearchQuery: ', searchQuery);
   const getSearchSuggestions = async () => {
-    console.log(searchQuery);
+    // console.log(searchQuery);
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
     // console.log(json);
@@ -54,9 +56,15 @@ const Head = () => {
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
+
+  // const searchQueryHandler = () => {
+  //   navigate('/search?q=' + searchQuery);
+  //   console.log('searchQuery-', searchQuery);
+  // };
+
   return (
-    <div className="grid grid-flow-col p-1 shadow-lg">
-      <div className="flex col-span-1 py-3 px-3">
+    <div className="sticky top-0 z-10 flex flex-row bg-white justify-between h-14 p-2 px-4 items-center shadow-xl ">
+      <div className=" flex h-5 items-center ">
         <img
           onClick={() => toggleMenuHandler()}
           className="h-8 cursor-pointer"
@@ -71,61 +79,81 @@ const Head = () => {
           />
         </a>
       </div>
-      <div className="col-span-10 mx-6">
-        <div className="text-center">
-          <input
-            className="w-1/2 border border-gray-400 p-2 rounded-l-full bg-gray-100"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
-          />
-          {/* <Link href="/search"> */}
-          {/* <a href={'/search?search_query=' + searchQuery}> */}
-          <button
-            className=" border bg-gray-200 border-gray-400 rounded-r-full px-3 py-2 py-3 -py-1 "
-            onClick={() =>
-              dispatch(searchText(searchQuery), setShowSuggestions(false))
-            }
-          >
-            <AiOutlineSearch />
-          </button>
-          {/* </Link> */}
-          {/* </a> */}
+      <div className=" relative flex flex-col justify-center ">
+        <div className="group flex items-center">
+          <div className=" flex h-8 md:h-9 group-focus-within:border-gray-500 md:group-focus-within:pl-0 ">
+            <input
+              className=" bg-transparent py-1 px-5 w-44 md:group-focus-within:pl-2 md:w-64 lg:w-[500px] border rounded-l-full "
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setShowSuggestions(true)}
+              onBlur={() => setShowSuggestions(false)}
+            />
+            {/* {searchQuery !== "" && (
+            <span
+              className="material-symbols-outlined cursor-pointer hover:bg-gray-200 rounded-full  dark:hover:bg-gray-700"
+              onClick={() => setSearchQuery("")}
+            >
+              close
+            </span>
+          )} */}
+
+            {/* <Link href="/search"> */}
+            <a href={'/search?search_query=' + searchQuery}>
+              <button
+                className="w-[40px] md:w-[60px] h-8 md:h-9 flex items-center justify-center border border-l-0 rounded-r-2xl  bg-gray-100"
+                onClick={() =>
+                  dispatch(searchText(searchQuery), setShowSuggestions(false))
+                }
+              >
+                <AiOutlineSearch />
+              </button>
+              {/* </Link> */}
+            </a>
+          </div>
+          <div className="mx-3 h-4 w-4 my-3">
+            <MdKeyboardVoice />
+          </div>
         </div>
         {showSuggestions && (
-          <div className="z-100 absolute items-center bg-white w-[500px] py-1 px-3 shadow-lg rounded-lg dark:shadow-slate-400">
+          <div className="group-focus-within:block absolute top-10 left-1/2 -translate-x-80 z-50 bg-white border rounded-full mx-5">
             <ul>
-              {/* <Link href="/search"> */}
-              {/* <a href={'/search?search_query=' + searchQuery}> */}
-              {suggestions.map((s) => (
-                <li
-                  key={s}
-                  className="flex py-2 px-3 shadow-sm hover:bg-gray-100 cursor-progress"
-                >
-                  <AiOutlineSearch className="m-1" />
-                  {s}
-                </li>
-              ))}
+              <a href={'/search?search_query=' + searchQuery}>
+                {/* <Link href="/search"> */}
+                {suggestions.map((s) => (
+                  <li
+                    key={s}
+                    className="flex py-2 px-3 bg-white w-[500px] border border-gray-300 shadow-xl"
+                    onClick={() => {
+                      setSearchQuery(s);
+                      setShowSuggestions(false);
+                      dispatch(searchText(searchQuery));
+                    }}
+                  >
+                    <AiOutlineSearch className="m-1" />
+                    {s}
+                  </li>
+                ))}
+              </a>
               {/* </Link> */}
-              {/* </a> */}
             </ul>
           </div>
         )}
       </div>
-      <div className="flex col-span-1 justify-evenly">
+      <div className="flex">
         {/* <FaRegBell className="h-8 my-3" />
         <BiSolidUserCircle className="h-8 my-3" /> */}
-
+<MdOutlineVideoCall className='h-6 w-6 my-3 '/>
         <img
-          className="h-6 my-3"
+          className="h-6 my-3 px-10"
           alt="user-icon"
           src="https://cdn-icons-png.flaticon.com/512/149/149845.png"
         />
 
         <img
-          className="h-6 my-3"
+          className="h-6 my-3 pr-4"
           alt="user-icon"
           src="https://cdn-icons-png.flaticon.com/512/666/666201.png"
         />

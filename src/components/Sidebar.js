@@ -15,7 +15,7 @@ const Sidebar = () => {
 
   if (!isMenuOpen) return null;
   return (
-    <div className=" p-4 px-6 shadow-lg w-56">
+    <div className="sticky overflow-y-scroll bg-white p-4 px-6 shadow-lg w-56 h-[41rem]">
       <ul>
         <Link to="/">
           <li className="flex h-10 ">

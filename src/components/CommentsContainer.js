@@ -6,23 +6,23 @@ const commentsData = [
     text: 'lorem ipsum dolor sot amet, lorem ipsum dolor sot amet',
     replies: [
       {
-        name: 'Shama',
+        name: 'Sanju',
         text: 'comment lorem ipsum dolor',
       },
       {
-        name: 'Shama',
-        text: 'lorem ipsum dolor',
+        name: 'Shama 01',
+        text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
       },
     ],
   },
   {
-    name: 'Shama',
+    name: 'Shama 05',
     text: 'lorem ipsum dolor',
     replies: [],
   },
   {
     name: 'Shama',
-    text: 'lorem ipsum dolor',
+    text: 'lorem ipsum dolor Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
     replies: [],
   },
   {
@@ -41,7 +41,7 @@ const commentsData = [
       },
     ],
   },
-  { name: 'Shama', text: 'lorem ipsum dolor', replies: [] },
+  { name: 'Shama', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s', replies: [] },
 ];
 
 const Comment = ({ data }) => {

@@ -3,9 +3,8 @@ import Button from './Button';
 // import { BsChevronRight } from 'react-icons/bs';
 
 const ButtonList = () => {
-
   return (
-    <div className="flex">
+    <div className="flex mx-2">
       {/* <BsChevronRight className="m-4 mt-4" /> */}
       <Button name="All" />
       <Button name="Computer Programming" />
